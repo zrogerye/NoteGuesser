@@ -10,7 +10,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class levelOne extends AppCompatActivity {
@@ -18,8 +20,10 @@ public class levelOne extends AppCompatActivity {
     String answer;
     EditText answerInput;
     Button submitButton;
-    String soundId;
+    int listPos;
+    int soundId;
     List<Integer> soundList;
+    Map<Integer, String> soundMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +53,22 @@ public class levelOne extends AppCompatActivity {
 
         //add all the notes to a list and then set the random to id
 
-        //maybe try with map
+        //map is for comparing user input to correct answer
+        soundMap = new HashMap<Integer,String>();
+        soundMap.put(R.raw.a, "a");
+        soundMap.put(R.raw.b, "b");
+        soundMap.put(R.raw.bb, "bb");
+        soundMap.put(R.raw.c, "c");
+        soundMap.put(R.raw.cs, "cs");
+        soundMap.put(R.raw.d, "d");
+        soundMap.put(R.raw.e, "e");
+        soundMap.put(R.raw.eb, "eb");
+        soundMap.put(R.raw.f, "f");
+        soundMap.put(R.raw.fb, "fb");
+        soundMap.put(R.raw.g, "g");
+        soundMap.put(R.raw.gs, "gs");
 
+        //arraylist is for playing a random sound
         soundList = new ArrayList<Integer>();
         soundList.add(R.raw.a);
         soundList.add(R.raw.b);
@@ -73,23 +91,12 @@ public class levelOne extends AppCompatActivity {
                 playRandomSound();
             }
         });
-
-        /*soundStartOne = MediaPlayer.create(this,R.raw.a);
-
-
-        Button playSoundOne = (Button) findViewById(R.id.playSoundOne);
-        MediaPlayer finalSoundStartOne = soundStartOne;
-        playSoundOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finalSoundStartOne.start();
-            }
-        });*/
     }
 
     private void playRandomSound() {
-        int randomInt = (new Random().nextInt(soundList.size()));
-        int sound = soundList.get(randomInt);
+        listPos = (new Random().nextInt(soundList.size()));
+        soundId = soundList.get(listPos);
+        int sound = soundList.get(listPos);
 
         MediaPlayer mp = MediaPlayer.create(this, sound);
         mp.start();
@@ -105,7 +112,9 @@ public class levelOne extends AppCompatActivity {
 
                 showToast(answer);
 
-                if(answer.equals("c")){
+
+                //oh shit maybe i need a map
+                if(answer.equals(soundMap.get(soundId))){
                     showToast("correct");
                 }
             }
