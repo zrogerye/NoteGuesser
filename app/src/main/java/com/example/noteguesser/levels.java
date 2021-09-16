@@ -17,6 +17,7 @@ public class levels extends AppCompatActivity {
 
         configureBackButton();
         configureLevelOneButton();
+        configureLevelTwoButton();
     }
 
     private void configureLevelOneButton(){
@@ -25,6 +26,16 @@ public class levels extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(levels.this, levelOne.class));
+            }
+        });
+    }
+
+    private void configureLevelTwoButton(){
+        Button levelOneButton = (Button) findViewById(R.id.levelTwo);
+        levelOneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(levels.this, levelTwo.class));
             }
         });
     }

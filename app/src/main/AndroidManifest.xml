@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NoteGuesser">
         <activity
+            android:name=".levelTwo"
+            android:exported="true" />
+        <activity
             android:name=".levelOne"
             android:exported="true" />
         <activity
