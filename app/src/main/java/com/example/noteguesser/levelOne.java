@@ -110,12 +110,14 @@ public class levelOne extends AppCompatActivity {
             public void onClick(View view) {
                 answer = answerInput.getText().toString();
 
-                showToast(answer);
+                //showToast(answer);
 
 
                 //oh shit maybe i need a map
                 if(answer.equals(soundMap.get(soundId))){
                     showToast("correct");
+                } else{
+                    showToast("incorrect, correct answer is: " + soundMap.get(soundId));
                 }
             }
         });
